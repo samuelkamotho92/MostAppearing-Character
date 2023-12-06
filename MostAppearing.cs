@@ -9,7 +9,7 @@ namespace FilesAndOperators
 {
     public class MostAppearing
     {
-        public object countString()
+        public KeyValuePair<char, int> countString()
         {
             //create a Dictionary having Tkey and TValue having key and value pair
             Dictionary<char, int> result = new Dictionary<char, int>();
@@ -34,9 +34,23 @@ namespace FilesAndOperators
             }
             foreach (var entry in result)
             {
-                Console.WriteLine($"{entry.Key}: {entry.Value}");
+                Console.WriteLine(entry);
+             //   Console.WriteLine($"{entry.Key}: {entry.Value}");
             }
-            return result;
+
+            KeyValuePair<char, int> maxEntry = default;
+
+            foreach (var entry in result)
+            {
+                if (maxEntry.Equals(default) || entry.Value > maxEntry.Value)
+                {
+                    maxEntry = entry;
+                }
+            }
+
+            Console.WriteLine($"Character with the most occurrences: {maxEntry.Key}, Count: {maxEntry.Value}");
+            Console.WriteLine(maxEntry.Key);
+            return maxEntry;
         }
     }
 }
